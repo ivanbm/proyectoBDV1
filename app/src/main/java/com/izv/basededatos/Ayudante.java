@@ -41,7 +41,7 @@ public class Ayudante extends SQLiteOpenHelper {
         //sin que se produzca perdida de datos
 
         //1º crear tablas de respaldo(identicas)
-        /*String sql="CREATE TABLE respaldo (id integer, nombre text, telefono text, valoracion integer, fnac text)";
+        String sql="CREATE TABLE respaldo (id integer, nombre text, telefono text, valoracion integer, fnac text)";
         db.execSQL(sql);
         //2º copio los datos de mis tablas en las de respaldo
         sql="insert into respaldo select * from "+Contrato.TablaJugador.TABLA;
@@ -62,7 +62,7 @@ public class Ayudante extends SQLiteOpenHelper {
         db.execSQL(sql);
         //6º borro las tablas de respaldo
         sql = "drop table respaldo";
-        db.execSQL(sql);*/
+        db.execSQL(sql);
 
     }
 }
