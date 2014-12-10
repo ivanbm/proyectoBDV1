@@ -37,8 +37,6 @@ public class Ayudante extends SQLiteOpenHelper {
         }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //transformar el esquema de la de la version old a la new
-        //sin que se produzca perdida de datos
 
         //1º crear tablas de respaldo(identicas)
         String sql="CREATE TABLE respaldo (id integer, nombre text, telefono text, valoracion integer, fnac text)";
