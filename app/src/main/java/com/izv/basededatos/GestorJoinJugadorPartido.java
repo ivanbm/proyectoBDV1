@@ -35,13 +35,15 @@ public class GestorJoinJugadorPartido {
 
 
 
-    public List<JoinJugadoPartido> select(String condicion) {
+    public List<JoinJugadoPartido> select(long idj) {
 
         List<JoinJugadoPartido> aljp = new ArrayList<JoinJugadoPartido>();
 
         //un elemento que me permite recorrer el resultado de la consulta
-        Cursor cursor = bd.rawQuery("select j.nombre, p.contrincante, p.valoracion from " +
-                Contrato.TablaJugador.TABLA + " j join " + Contrato.TablaPartido.TABLA + " p on j.id=p.idjugador", null);
+        /*Cursor cursor = bd.rawQuery("select j.nombre, p.contrincante, p.valoracion from " +
+                Contrato.TablaJugador.TABLA + " j join " + Contrato.TablaPartido.TABLA + " p on j.id=p.idjugador where p.idjugador="+idj, null);
+        */
+        Cursor cursor = bd.rawQuery("select * from "+Contrato.TablaPartido.TABLA, null);
         cursor.moveToFirst();
 
         JoinJugadoPartido ojp;
@@ -65,7 +67,7 @@ public class GestorJoinJugadorPartido {
     }
 
     public JoinJugadoPartido getRow(long id){
-        List<JoinJugadoPartido> lp=select(null);
+        List<JoinJugadoPartido> lp=select(id);
         if(!lp.isEmpty())
             return lp.get(0);
         return null;

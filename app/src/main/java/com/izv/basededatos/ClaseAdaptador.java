@@ -34,6 +34,7 @@ public class ClaseAdaptador extends CursorAdapter {
         tv2=(TextView) view.findViewById(R.id.tvtelefono);
         tv3=(TextView) view.findViewById(R.id.tvfecha);
 
+        tv1.setTag(j.getId());
         tv1.setText(j.getNombre());
         tv2.setText(j.getTelefono());
         tv3.setText(j.getFnac());

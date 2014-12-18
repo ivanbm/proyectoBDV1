@@ -20,6 +20,8 @@
             android:name="com.izv.basededatos.ListaPartidos"
             android:label="@string/title_activity_lista_partidos" >
         </activity>
+        <activity android:name=".AnadirPartido" >
+        </activity>
     </application>
 
 </manifest>

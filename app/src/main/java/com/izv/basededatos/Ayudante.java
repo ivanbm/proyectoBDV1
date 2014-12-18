@@ -23,7 +23,6 @@ public class Ayudante extends SQLiteOpenHelper {
                     Contrato.TablaJugador.NOMBRE + " text, " +
                     Contrato.TablaJugador.TELEFONO + " text, " +
                     Contrato.TablaJugador.FNAC+" text)";
-            Log.v("sql", sql);
             db.execSQL(sql);
 
             sql="create table "+Contrato.TablaPartido.TABLA+
@@ -32,7 +31,6 @@ public class Ayudante extends SQLiteOpenHelper {
                     Contrato.TablaPartido.ID_JUGADOR + " integer unique, " +
                     Contrato.TablaPartido.CONTRINCANTE + " text unique, " +
                     Contrato.TablaPartido.VALORACION+" text)";
-            Log.v("sql", sql);
             db.execSQL(sql);
         }
     @Override

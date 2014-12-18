@@ -7,6 +7,8 @@
     <string name="jugador">Jugador</string>
     <string name="contrincante">Contrincante</string>
     <string name="title_activity_lista_partidos">ListaPartidos</string>
+    <string name="anadir">Añadir</string>
     <string name="valoracion">Valoración</string>
+
 
 </resources>

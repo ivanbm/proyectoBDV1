@@ -26,6 +26,8 @@ public class MainActivity extends Activity {
     private ClaseAdaptador ca;
     private EditText etnombre, ettelefono, etvaloracion, etfecha, etcont;
     private ListView lv;
+    private static int VER_PARTIDOS = 1;
+    private static int ANADIR_PARTIDO = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +37,23 @@ public class MainActivity extends Activity {
         gp=new GestorPartido(this);
         etnombre=(EditText)findViewById(R.id.etNombre);
         ettelefono=(EditText)findViewById(R.id.etTelefono);
-        etvaloracion=(EditText)findViewById(R.id.etValoracion);
+        /*etvaloracion=(EditText)findViewById(R.id.etValoracion);
         etfecha=(EditText)findViewById(R.id.etFnac);
-        etcont=(EditText)findViewById(R.id.etCont);
+        etcont=(EditText)findViewById(R.id.etCont);*/
         lv=(ListView)findViewById(R.id.listView);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Cursor c=(Cursor)lv.getItemAtPosition(position);
+                Jugador j=GestorJugador.getRow(c);
+
+                Intent i = new Intent(MainActivity.this, AnadirPartido.class);
+                i.putExtra("id",j.getId());
+                startActivityForResult(i, ANADIR_PARTIDO);
+            }
+        });
 
     }
 
@@ -71,22 +86,17 @@ public class MainActivity extends Activity {
     }
 
     public void alta(View v){
-        String nombre,telefono,fecha,valoracion,contrincante;
+        String nombre,telefono,fecha;
         nombre=etnombre.getText().toString();
         telefono=ettelefono.getText().toString();
-        valoracion=etvaloracion.getText().toString();
         fecha=etfecha.getText().toString();
-        contrincante=etcont.getText().toString();
         Jugador j=new Jugador(nombre,telefono,fecha);
         long id=gj.insert(j);
-
-        Partido p = new Partido(id,contrincante,valoracion);
-        long idp = gp.insert(p);
 
         ca.getCursor().close();
         ca.changeCursor(gj.getCursor(null,null,null));
 
-        Toast.makeText(this,"Jugador insertado, id:"+id+" en el partido "+idp,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Jugador insertado, id:"+id,Toast.LENGTH_SHORT).show();
     }
 
     public void ver(View v){
@@ -101,7 +111,7 @@ public class MainActivity extends Activity {
     public void verPartidos(View v){
 
         Intent i = new Intent(this, ListaPartidos.class);
-        startActivityForResult(i,1);
+        startActivityForResult(i,VER_PARTIDOS);
     }
 
 
